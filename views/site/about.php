@@ -1,18 +1,14 @@
 <?php
+use yii\bootstrap4\Modal;
 
-/** @var yii\web\View $this */
+Modal::begin([
+    'header' => '<h2>Hello world</h2>',
+    'toggleButton' => [
+        'label' => 'окно файл',
+    ],
+    'footer' => 'Низ окна',
+]);
 
-use yii\helpers\Html;
+echo 'какие-то штуки для файла';
 
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        This is the About page. You may modify the following file to customize its content:
-    </p>
-
-    <code><?= __FILE__ ?></code>
-</div>
+Modal::end(); ?>

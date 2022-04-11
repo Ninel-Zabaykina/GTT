@@ -125,4 +125,14 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionTabs()
+    {
+        return $this->render('tabs');
+    }
+
+    public function actionHelp()
+    {
+        return $this->render('help');
+    }
 }

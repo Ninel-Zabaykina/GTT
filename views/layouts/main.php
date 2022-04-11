@@ -37,9 +37,12 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'File', 'options' => ['data-toggle'=> "modal", 'data-target' => "#exampleModalCenterFile"]],
+            ['label' => 'Record', 'options' => ['data-toggle'=> "modal", 'data-target' => "#exampleModalCenterRecord"]],
+            ['label' => 'Tabs', 'options' => ['data-toggle'=> "modal", 'data-target' => "#exampleModalCenterTabs"]],
+            ['label' => 'Settings', 'options' => ['data-toggle'=> "modal", 'data-target' => "#exampleModalCenterSettings"]],
+            ['label' => 'Help', 'url' => ['/site/help']],
+
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -74,6 +77,63 @@ AppAsset::register($this);
         <p class="float-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
+
+<!-- Modal File-->
+<div class="modal fade" id="exampleModalCenterFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">File menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-secondary" ="">Download</button>
+                <button type="button" class="btn btn-secondary">Open</button>
+                <button type="button" class="btn btn-secondary">Save</button>
+                <button type="button" class="btn btn-secondary">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Record-->
+<div class="modal fade" id="exampleModalCenterRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">File menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-secondary" ="">Create</button>
+                <button type="button" class="btn btn-secondary">Save</button>
+                <button type="button" class="btn btn-secondary">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Tabs-->
+<div class="modal fade" id="exampleModalCenterTabs" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">File menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-secondary">Save</button>
+                <button type="button" class="btn btn-secondary">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php $this->endBody() ?>
 </body>
