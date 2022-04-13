@@ -1,3 +1,11 @@
+body {
+    background-color:git #343a40;;
+}
+
+.d-flex {
+    background: #343a40;
+}
+
 main > .container {
     padding: 70px 15px 20px;
 }
@@ -62,6 +70,10 @@ a.desc:after {
 .nav li > form > button.logout {
     padding-top: 7px;
     color: rgba(255, 255, 255, 0.5);
+}
+
+#loginRight {
+    float: right;
 }
 
 @media(max-width:767px) {

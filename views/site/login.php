@@ -4,13 +4,16 @@
 /** @var yii\bootstrap4\ActiveForm $form */
 /** @var app\models\LoginForm $model */
 
+use app\assets\AppAsset;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
+
+AppAsset::register($this);
 ?>
-<div class="site-login">
+<div class="site-login" id="loginRight">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to login:</p>
