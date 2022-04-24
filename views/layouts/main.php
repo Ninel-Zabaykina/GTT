@@ -89,10 +89,12 @@ AppAsset::register($this);
                 </button>
             </div>
             <div class="modal-body">
-                <button type="button" class="btn btn-secondary" ="">Download</button>
-                <button type="button" class="btn btn-secondary">Open</button>
-                <button type="button" class="btn btn-secondary">Save</button>
-                <button type="button" class="btn btn-secondary">Delete</button>
+                <div class="btn-in-modal">
+                    <button type="button" class="btn btn-secondary" style="width: 100px; margin-left: 25px;">Download</button>
+                    <button type="button" class="btn btn-secondary" style="width: 100px;">Open</button>
+                    <button type="button" class="btn btn-secondary" style="width: 100px;">Save</button>
+                    <button type="button" class="btn btn-secondary" style="width: 100px;">Delete</button>
+                </div>
             </div>
         </div>
     </div>
@@ -103,15 +105,14 @@ AppAsset::register($this);
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">File menu</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Record menu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <button type="button" class="btn btn-secondary" ="">Create</button>
-                <button type="button" class="btn btn-secondary">Save</button>
-                <button type="button" class="btn btn-secondary">Delete</button>
+                <button type="button" class="btn btn-secondary" style="width: 100px; margin-left: 75px;">Create</button>
+                <button type="button" class="btn btn-secondary" style="width: 100px;">Save</button>
             </div>
         </div>
     </div>
@@ -122,14 +123,14 @@ AppAsset::register($this);
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">File menu</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Tab menu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <button type="button" class="btn btn-secondary">Save</button>
-                <button type="button" class="btn btn-secondary">Delete</button>
+                <button type="button" class="btn btn-secondary" style="width: 100px; margin-left: 125px">Save</button>
+                <button type="button" class="btn btn-secondary" style="width: 100px;">Delete</button>
             </div>
         </div>
     </div>
