@@ -10,6 +10,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\web\UploadedFile;
 
 class SiteController extends Controller
 {
@@ -135,10 +136,15 @@ class SiteController extends Controller
     public function actionHelp()
     {
         $support_model = new SupportForm();
-        if ($support_model->load(Yii::$app->request->post())){
-            var_dump(Yii::$app->request->post());
-            var_dump($support_model);
+
+        if (Yii::$app->request->isPost) {
+            $support_model->photo = UploadedFile::getInstance($support_model, 'photo');
+            if ($support_model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
         }
+
         return $this->render('help', compact('support_model'));
     }
 

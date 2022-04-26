@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($support_model, 'name') ?>
                     <?= $form->field($support_model, 'email') ?>
                     <?= $form->field($support_model, 'text') ?>
-                    <?= $form->field($support_model, 'photo') ?>
+                    <?= $form->field($support_model, 'photo')->fileInput() ?>
                     <?= Html::submitButton('Send', ['class' => 'btn btn-success']) ?>
                 <?php ActiveForm::end() ?>
             </div>
