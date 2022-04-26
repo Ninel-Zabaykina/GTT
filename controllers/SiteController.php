@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\SupportForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -133,6 +134,12 @@ class SiteController extends Controller
 
     public function actionHelp()
     {
-        return $this->render('help');
+        $support_model = new SupportForm();
+        if ($support_model->load(Yii::$app->request->post())){
+            var_dump(Yii::$app->request->post());
+            var_dump($support_model);
+        }
+        return $this->render('help', compact('support_model'));
     }
+
 }
