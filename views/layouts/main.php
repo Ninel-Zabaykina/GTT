@@ -9,6 +9,7 @@ use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use yii\bootstrap4\Modal;
 
 AppAsset::register($this);
 ?>
@@ -37,10 +38,10 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'File', 'options' => ['data-toggle'=> "modal", 'data-target' => "#exampleModalCenterFile"]],
-            ['label' => 'Record', 'options' => ['data-toggle'=> "modal", 'data-target' => "#exampleModalCenterRecord"]],
-            ['label' => 'Tabs', 'options' => ['data-toggle'=> "modal", 'data-target' => "#exampleModalCenterTabs"]],
-            ['label' => 'Settings', 'options' => ['data-toggle'=> "modal", 'data-target' => "#exampleModalCenterSettings"]],
+            ['label' => 'File', 'options' => ['data-toggle'=> "modal", 'data-target' => "#filemodal"]],
+            ['label' => 'Record', 'options' => ['data-toggle'=> "modal", 'data-target' => "#recordmodal"]],
+            ['label' => 'Tabs', 'options' => ['data-toggle'=> "modal", 'data-target' => "#tabmodal"]],
+            ['label' => 'Settings', 'options' => ['data-toggle'=> "modal", 'data-target' => "#settingsmodal"]],
             ['label' => 'Help', 'url' => ['/site/help']],
 
             Yii::$app->user->isGuest ? (
@@ -78,63 +79,50 @@ AppAsset::register($this);
     </div>
 </footer>
 
-<!-- Modal File-->
-<div class="modal fade" id="exampleModalCenterFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">File menu</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="btn-in-modal">
-                    <button type="button" class="btn btn-secondary" style="width: 100px; margin-left: 25px;">Download</button>
-                    <button type="button" class="btn btn-secondary" style="width: 100px;">Open</button>
-                    <button type="button" class="btn btn-secondary" style="width: 100px;">Save</button>
-                    <button type="button" class="btn btn-secondary" style="width: 100px;">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Modal File -->
+<?php
+    Modal::begin([
+            'title'=>'File',
+            'footer' => 'tratata',
+            'id' => 'filemodal',
+    ])
+?>
+<div class="btn-in-modal">
+    <?= Html::Button('Download', ['class' => 'btn btn-secondary', 'name' => 'download-file-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
+    <?= Html::Button('Create', ['class' => 'btn btn-secondary', 'name' => 'open-file-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
+    <?= Html::Button('Save', ['class' => 'btn btn-secondary', 'name' => 'save-file-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
+    <?= Html::Button('Delete', ['class' => 'btn btn-secondary', 'name' => 'delete-file-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
 </div>
+<?php Modal::end() ?>
 
-<!-- Modal Record-->
-<div class="modal fade" id="exampleModalCenterRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Record menu</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <button type="button" class="btn btn-secondary" style="width: 100px; margin-left: 75px;">Create</button>
-                <button type="button" class="btn btn-secondary" style="width: 100px;">Save</button>
-            </div>
-        </div>
-    </div>
+<!-- Modal Record -->
+<?php
+Modal::begin([
+    'title'=>'Record',
+    'footer' => 'tratata',
+    'id' => 'recordmodal',
+])
+?>
+<div class="btn-in-modal">
+    <?= Html::Button('Create', ['class' => 'btn btn-secondary', 'name' => 'create-record-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
+    <?= Html::Button('Save', ['class' => 'btn btn-secondary', 'name' => 'save-record-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
 </div>
+<?php Modal::end() ?>
 
-<!-- Modal Tabs-->
-<div class="modal fade" id="exampleModalCenterTabs" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Tab menu</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <button type="button" class="btn btn-secondary" style="width: 100px; margin-left: 125px">Save</button>
-                <button type="button" class="btn btn-secondary" style="width: 100px;">Delete</button>
-            </div>
-        </div>
-    </div>
+<!-- Modal Tabs -->
+<?php
+Modal::begin([
+    'title'=>'Tab',
+    'footer' => 'tratata',
+    'id' => 'tabmodal',
+])
+?>
+<div class="btn-in-modal">
+    <?= Html::Button('Save', ['class' => 'btn btn-secondary', 'name' => 'save-tab-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
+    <?= Html::Button('Delete', ['class' => 'btn btn-secondary', 'name' => 'delete-tab-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
 </div>
+<?php Modal::end() ?>
+
 
 <?php $this->endBody() ?>
 </body>
