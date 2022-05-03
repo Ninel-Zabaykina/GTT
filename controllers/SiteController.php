@@ -2,8 +2,9 @@
 
 namespace app\controllers;
 
-use app\models\UploadAudio;
-use app\models\SupportForm;
+use app\models\File;
+use app\models\Message;
+use app\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -64,7 +65,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $audio = new UploadAudio();
+        $audio = new File();
 
 //        if ($audio->load(Yii::$app->request->post()) && $audio->validate()) {
 //            $audio->audioFile->saveAs('web/audio/'.$audio->audioFile->baseName.$audio->ex);
@@ -150,7 +151,7 @@ class SiteController extends Controller
 
     public function actionHelp()
     {
-        $support_model = new SupportForm();
+        $support_model = new Message();
 
         if (Yii::$app->request->isPost) {
             $support_model->photo = UploadedFile::getInstance($support_model, 'photo');
@@ -163,4 +164,15 @@ class SiteController extends Controller
         return $this->render('help', compact('support_model'));
     }
 
+    public function actionSignup()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $model = new SignupForm();
+        if (isset($_POST['SignupForm'])){
+            var_dump($_POST['SignupForm']);die();
+        }
+        return $this->render('signup', compact('model'));
+    }
 }
