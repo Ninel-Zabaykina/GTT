@@ -9,7 +9,6 @@ use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
-use yii\bootstrap4\Modal;
 
 AppAsset::register($this);
 ?>
@@ -38,10 +37,6 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'File', 'options' => ['data-toggle'=> "modal", 'data-target' => "#filemodal"]],
-            ['label' => 'Record', 'options' => ['data-toggle'=> "modal", 'data-target' => "#recordmodal"]],
-            ['label' => 'Tabs', 'options' => ['data-toggle'=> "modal", 'data-target' => "#tabmodal"]],
-            ['label' => 'Settings', 'options' => ['data-toggle'=> "modal", 'data-target' => "#settingsmodal"]],
             ['label' => 'Help', 'url' => ['/site/help']],
 
             Yii::$app->user->isGuest ? (
@@ -78,50 +73,6 @@ AppAsset::register($this);
         <p class="float-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
-
-<!-- Modal File -->
-<?php
-    Modal::begin([
-            'title'=>'File',
-            'footer' => 'tratata',
-            'id' => 'filemodal',
-    ])
-?>
-<div class="btn-in-modal">
-    <?= Html::Button('Download', ['class' => 'btn btn-secondary', 'name' => 'download-file-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
-    <?= Html::Button('Create', ['class' => 'btn btn-secondary', 'name' => 'open-file-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
-    <?= Html::Button('Save', ['class' => 'btn btn-secondary', 'name' => 'save-file-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
-    <?= Html::Button('Delete', ['class' => 'btn btn-secondary', 'name' => 'delete-file-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
-</div>
-<?php Modal::end() ?>
-
-<!-- Modal Record -->
-<?php
-Modal::begin([
-    'title'=>'Record',
-    'footer' => 'tratata',
-    'id' => 'recordmodal',
-])
-?>
-<div class="btn-in-modal">
-    <?= Html::Button('Create', ['class' => 'btn btn-secondary', 'name' => 'create-record-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
-    <?= Html::Button('Save', ['class' => 'btn btn-secondary', 'name' => 'save-record-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
-</div>
-<?php Modal::end() ?>
-
-<!-- Modal Tabs -->
-<?php
-Modal::begin([
-    'title'=>'Tab',
-    'footer' => 'tratata',
-    'id' => 'tabmodal',
-])
-?>
-<div class="btn-in-modal">
-    <?= Html::Button('Save', ['class' => 'btn btn-secondary', 'name' => 'save-tab-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
-    <?= Html::Button('Delete', ['class' => 'btn btn-secondary', 'name' => 'delete-tab-btn', 'style' => 'width: 100px; margin-left: 25px:']) ?>
-</div>
-<?php Modal::end() ?>
 
 
 <?php $this->endBody() ?>

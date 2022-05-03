@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\UploadAudio;
 use app\models\SupportForm;
 use Yii;
 use yii\filters\AccessControl;
@@ -63,7 +64,21 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $audio = new UploadAudio();
+
+//        if ($audio->load(Yii::$app->request->post()) && $audio->validate()) {
+//            $audio->audioFile->saveAs('web/audio/'.$audio->audioFile->baseName.$audio->ex);
+//            }
+//        }
+        if (Yii::$app->request->post()) {
+            $audio->audioFile = UploadedFile::getInstance($audio, 'audioFile');
+            if ($audio->upload()) {
+                // file is uploaded successfully
+                return $this->render('index', ['audio' => $audio]);
+            }
+        }
+//        return $this->render('index', compact('audio'));
+        return $this->render('index', ['audio' => $audio]);
     }
 
     /**
