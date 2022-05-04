@@ -6,8 +6,7 @@ use yii\helpers\Html;
 $model = new User();
 ?>
 
-<?php $form = ActiveForm::begin() ?>
-    <?= $form->field($model, 'name')->textInput() ?>
+<?php $form = ActiveForm::begin(['id'=>'form-signup']); ?>
     <?= $form->field($model, 'email')->textInput(['autofocus'=>true]) ?>
     <?= $form->field($model, 'login')->textInput() ?>
     <?= $form->field($model, 'password')->passwordInput() ?>

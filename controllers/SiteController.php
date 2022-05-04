@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\File;
 use app\models\Message;
 use app\models\SignupForm;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -65,6 +66,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
         $audio = new File();
 
 //        if ($audio->load(Yii::$app->request->post()) && $audio->validate()) {
@@ -166,13 +168,16 @@ class SiteController extends Controller
 
     public function actionSignup()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
         $model = new SignupForm();
-        if (isset($_POST['SignupForm'])){
-            var_dump($_POST['SignupForm']);die();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+            }
         }
-        return $this->render('signup', compact('model'));
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 }

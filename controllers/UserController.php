@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\File;
+use app\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -62,15 +63,16 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $createuser = User::find()->all();
+        $model = new User();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->save()) {
+                return $this->refresh();
+            }
+        }
 
-        return $this->render('create', ['create' => $createuser]);
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
-
-    public function acttionDelete()
-    {
-
-    }
-
 
 }
