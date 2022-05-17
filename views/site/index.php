@@ -11,11 +11,28 @@ $this->title = 'GuitarToTab';
 AppAsset::register($this);
 ?>
 
+<?php if (Yii::$app->user->isGuest) { ?>
+<div class="hellotext">
+    <h1 style="text-align: center">
+    <br>We are pleased to welcome you to the site GuitarToTab. </br>
+    Our service will help you quickly and easily get the tablature of any audio recording.
+        In order to use our application you just need to register or log in if you already have a network account.
+    </h1>
+    <div style="text-align: center">
+        <button type="button" class="btn btn-secondary btn-lg" style="width: 250px; margin: 15px; ">Registration</button>
+    </div>
+    <div> </div>
+    <div style="text-align: center">
+        <button type="button" class="btn btn-secondary btn-lg" style="width: 250px;">Authorization</button>
+    </div>
+</div>
+<?php } ?>
+
+<?php if (!Yii::$app->user->isGuest) { ?>
 <div class="row">
     <div class="col">
         <div>
             <?php $form_a = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
-<!--                <button type="button" class="btn btn-secondary" style="width: 100px;">Download</button>-->
                 <button type="button" class="btn btn-secondary" style="width: 100px;">Record</button>
                 <?php echo $form_a->field($audio, 'audioFile')->fileInput() ?>
                 <button type="submit" class="btn btn-secondary">Submit</button>
@@ -52,3 +69,4 @@ AppAsset::register($this);
     </div>
 </div>
 <?php } ?>
+    <?php } ?>

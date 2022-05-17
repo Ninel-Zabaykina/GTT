@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\File;
 use app\models\SignupForm;
+use app\models\UserSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -56,6 +57,17 @@ class UserController extends Controller
         ];
     }
 
+    public function actionIndex()
+    {
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays homepage.
      *
@@ -63,16 +75,56 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->save()) {
-                return $this->refresh();
+        $model = new SignupForm();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                Yii::$app->user->login($model);
+                return $this->redirect(['view', 'id' => $model->id]);
             }
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
             'model' => $model,
         ]);
+
+
+//        var_dump(Yii::$app->request->post());
+//        var_dump($model);
+//        var_dump($model->load(Yii::$app->request->post()));
+//        var_dump($model);
+//        exit();
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            Yii::$app->user->login($model);
+//            return $this->redirect(['/user']);
+ //       }
+
+ //       return $this->render('create', [
+ //           'model' => $model,
+ //       ]);
     }
+
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            $model = User::find()->where(['id' => $id])->one()
+        ]);
+    }
+
+    public function actionUpdate($id)
+    {
+        $model = User::find()->where(['id' => $id])->one();
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
 
 }

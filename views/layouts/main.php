@@ -34,19 +34,38 @@ AppAsset::register($this);
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
     ]);
+
+    $items = [];
+    if (Yii::$app->user->isGuest) {
+        $items[] = ['label' => 'Registration', 'url' => ['/user/create']];
+        $items[] = ['label' => 'Authorization', 'url' => ['/site/login']];
+    } else {
+        $items[] = ['label'=>'Личный кабинет', 'url'=>['/user']];
+        }
+
+    /*$items[] =  '<li>'
+    . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
+    . Html::submitButton(
+        'Logout (' . Yii::$app->user->identity->login . ')',
+        ['class' => 'btn btn-link logout']
+    )
+    . Html::endForm()
+    . '</li>';*/
+
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => $items,
         'items' => [
             ['label' => 'Help', 'url' => ['/site/help']],
-            ['label' => 'Регистрация', 'url' => ['site/signup'], 'visible' => Yii::$app->user->isGuest],
+            ['label' => 'Registration', 'url' => ['user/create'], 'visible' => Yii::$app->user->isGuest],
 
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login'], 'options' => ['data-target'=>'#loginRight']]
+                ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    'Logout (' . Yii::$app->user->identity->login . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()

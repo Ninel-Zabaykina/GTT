@@ -68,6 +68,7 @@ class SiteController extends Controller
     {
 
         $audio = new File();
+        $model = new SignupForm();
 
 //        if ($audio->load(Yii::$app->request->post()) && $audio->validate()) {
 //            $audio->audioFile->saveAs('web/audio/'.$audio->audioFile->baseName.$audio->ex);
@@ -81,7 +82,8 @@ class SiteController extends Controller
             }
         }
 //        return $this->render('index', compact('audio'));
-        return $this->render('index', ['audio' => $audio]);
+        return $this->render('index', ['audio' => $audio,
+            'model'=>$model,]);
     }
 
     /**
@@ -169,15 +171,21 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
-            }
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->user->login($model);
+            return $this->redirect(['/user']);
         }
         return $this->render('signup', [
             'model' => $model,
         ]);
+    }
+
+    public function actionManual(){
+        return $this->render('manual');
+    }
+
+    public function actionFaq(){
+        return $this->render('faq');
     }
 }
