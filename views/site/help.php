@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="body-content">
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <h2>About project</h2>
 
                 <p>GuitarToTab is an assistant for people who want to work out a piece of music from a recording, in order
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     features not found on conventional music players. It is also used by many people for play-along practice. </p>
 
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <h2>Manual</h2>
 
                 <p>The manual section is designed to familiarize you with the basics of working with our service. You should also
@@ -30,12 +30,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     for proper operation in our web service. It can also solve most of the problems that arise when using
                     GuitarToTab.</p>
 
-<!--                <p><a class="btn btn-outline-secondary" href="/views/site/manual.php">Yii Forum &raquo;</a></p>-->
                 <?php Pjax::begin(); ?>
                 <?= Html::a("Go to manual", ['site/manual'], ['class' => 'btn btn-outline-secondary', 'options'=>'style: ']) ?>
                 <?php Pjax::end(); ?>
             </div>
-            <div class="col-lg-4">
+
+            <div class="col-lg-6">
+                <h2>Support</h2>
+                <?php $form = ActiveForm::begin() ?>
+                    <?= $form->field($support_model, 'name') ?>
+                    <?= $form->field($support_model, 'email') ?>
+                    <?= $form->field($support_model, 'text')-> textarea() ?>
+                    <?= $form->field($support_model, 'photo')->fileInput() ?>
+                    <?= Html::submitButton('Send', ['class' => 'btn btn-success']) ?>
+                <?php ActiveForm::end() ?>
+            </div>
+
+            <div class="col-lg-6" style="margin-top: 10px ">
                 <h2>FAQ</h2>
 
                 <p>If you have any difficulties while working with our application and you could not solve them using the
@@ -46,16 +57,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php Pjax::begin(); ?>
                 <?= Html::a("Go to FAQ", ['site/faq'], ['class' => 'btn btn-outline-secondary']) ?>
                 <?php Pjax::end(); ?>
-            </div>
-            <div class="col-lg-4">
-                <h2>Support</h2>
-                <?php $form = ActiveForm::begin() ?>
-                    <?= $form->field($support_model, 'name') ?>
-                    <?= $form->field($support_model, 'email') ?>
-                    <?= $form->field($support_model, 'text')-> textarea() ?>
-                    <?= $form->field($support_model, 'photo')->fileInput() ?>
-                    <?= Html::submitButton('Send', ['class' => 'btn btn-success']) ?>
-                <?php ActiveForm::end() ?>
             </div>
         </div>
     </div>
