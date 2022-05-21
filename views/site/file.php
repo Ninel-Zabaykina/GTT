@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-/* @var $audio app\models\UploadAudio */
+/* @var $audio app\models\File */
 
 use yii\widgets\ActiveForm;
 

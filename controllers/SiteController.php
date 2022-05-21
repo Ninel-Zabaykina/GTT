@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
-use app\models\UploadAudio;
-use app\models\SupportForm;
+use app\models\File;
+use app\models\Message;
+use app\models\SignupForm;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -64,7 +66,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $audio = new UploadAudio();
+
+        $audio = new File();
+        $model = new SignupForm();
 
 //        if ($audio->load(Yii::$app->request->post()) && $audio->validate()) {
 //            $audio->audioFile->saveAs('web/audio/'.$audio->audioFile->baseName.$audio->ex);
@@ -78,7 +82,8 @@ class SiteController extends Controller
             }
         }
 //        return $this->render('index', compact('audio'));
-        return $this->render('index', ['audio' => $audio]);
+        return $this->render('index', ['audio' => $audio,
+            'model'=>$model,]);
     }
 
     /**
@@ -150,7 +155,7 @@ class SiteController extends Controller
 
     public function actionHelp()
     {
-        $support_model = new SupportForm();
+        $support_model = new Message();
 
         if (Yii::$app->request->isPost) {
             $support_model->photo = UploadedFile::getInstance($support_model, 'photo');
@@ -163,4 +168,24 @@ class SiteController extends Controller
         return $this->render('help', compact('support_model'));
     }
 
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->user->login($model);
+            return $this->redirect(['/user']);
+        }
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionManual(){
+        return $this->render('manual');
+    }
+
+    public function actionFaq(){
+        return $this->render('faq');
+    }
 }
