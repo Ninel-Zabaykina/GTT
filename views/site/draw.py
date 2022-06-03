@@ -14,4 +14,4 @@ plot.xlabel('Sample')
 plot.ylabel('Amplitude')
 # plot.show()
 
-plot.savefig('C:/xampp/htdocs/GTT/views/site/spectrogramb.png')
+plot.savefig('C:/xampp/htdocs/GTT/views/site/s.png')

@@ -34,9 +34,11 @@ AppAsset::register($this);
 </div>
 <?php } ?>
 
-<?php if (Yii::$app->user->isGuest) { ?>
+
+
+
 <div class="row">
-    <div class="col">
+    <div class="col-sm-11">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
         <div class="example-2">
@@ -48,15 +50,21 @@ AppAsset::register($this);
                 </label>
             </div>
         </div>
+    </div>
+
+
+<div class="row">
 
     </div>
     <div class="col-sm-1">
-    <button type="button" class="btn btn-secondary" style="width: 200px; margin-right: 20px;"><big>ClearAll</big></button>
+        <button type="button" class="btn btn-secondary" style="width: 200px; "><big>Clear All</big></button>
     </div>
+
 </div>
 
 <?php /*if ($audio->path){ */?>
 <div class="site-index">
+
 
     <div class="jumbotron text-center bg-transparent">
           <div class="row">
@@ -76,8 +84,11 @@ AppAsset::register($this);
             </div>
         </div>
 
+
         <div class="row">
-            <p ><img src="<?php echo Url::base(''); ?>/img/audiowaves/spec1.jpg" alt="audiowave" ></p>
+            <div class="col">
+                <p ><img src="<?php echo Url::base(''); ?>../img/audiowaves/spec1.jpg" alt="audiowave"  style="height: 200px;"></p>
+            </div>
         </div>
 
         <div class="row">
@@ -91,27 +102,41 @@ AppAsset::register($this);
 
 
     <?php
-/*    $path_to_wav_file = 'C:/xampp/htdocs/GTT/web/uploads/00_BN1-129-Eb_comp_mic.wav';
+    $path_to_wav_file = 'C:/xampp/htdocs/GTT/web/uploads/00_BN1-129-Eb_comp_mic.wav';
     $au = shell_exec('draw.py');
-    echo $au;
+    echo $au.'f';
     /*$var = shell_exec('dir');
     echo $var;*/
-    ?><!--
+    ?>
+        <div class="row">
+            <div class="col-sm-11">
+               <?php
+              $file_array = file( 'C:\xampp\htdocs\GTT\views\site\template.txt' );
+               foreach ($file_array as $line_num => $line) {
+                   $a = htmlspecialchars($line);
+                   echo '<pre>'. $a . '</pre>' ;
+               }
+               ?>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-secondary" style="width: 200px; margin-top: 10px; "><big>Print tabs</big></button>
+            </div>
+        </div>
 
-       --><?php
-/*         $file_array = file( 'C:\xampp\htdocs\GTT\views\site\template.txt' );
-       foreach ($file_array as $line_num => $line) {
-           echo htmlspecialchars($line) . "<br />\n";
-       }
-            */?>
+
+
+
+
 
     <div class="body-content">
-       <!-- <p><img src="<?php /*echo Url::base(''); */?>/img/audiowaves/awave.jpg" alt="audiowave"></p>-->
+       <p><img src="<?php /*echo Url::base(''); */?>/img/audiowaves/awave.jpg" alt="audiowave"></p>-->
        <p><img src="<?php echo Url::base(''); ?>/img/tabs/tab.jpg" alt="tab" style="width: 900px; height: 450px; "></p>
     </div>
 
 
 
 </div>
-<?php } ?>
-<!--    --><?php /*} */?>
+
+
+
+

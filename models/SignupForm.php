@@ -10,8 +10,13 @@ class SignupForm extends User {
         return [
             [['email', 'login', 'password'], 'required', 'message' => 'Fill in the empty fields'],
             [['email'], 'email'],
+
             [['email'], 'unique', 'message' => 'syshestvyet'],
             [['login'], 'unique'],
+
+            [['email'], 'unique','targetClass'=>'app\models\User', 'message' => 'syshestvyet'],
+            [['login'], 'unique','targetClass'=>'app\models\User'],
+
             [['password'], 'string','min'=>2, 'max'=>10]
         ];
     }

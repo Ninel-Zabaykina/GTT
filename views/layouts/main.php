@@ -54,13 +54,17 @@ AppAsset::register($this);
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
+
       //  'items' => $items,
+
+        'items' => $items,
+
         'items' => [
             ['label' => 'Help', 'url' => ['/site/help']],
-            ['label' => 'Registration', 'url' => ['user/create'], 'visible' => Yii::$app->user->isGuest],
+            ['label' => 'Logout', 'url' => ['user/create'], 'visible' => Yii::$app->user->isGuest],
 
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Login (user1)', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
